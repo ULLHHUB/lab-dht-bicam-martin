@@ -16,6 +16,7 @@
         <!-- SonarCloud Configuration -->
         <sonar.organization>ullhhub</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.projectKey>ULLHHUB_lab-dht-bicam-martin</sonar.projectKey>
         
         <!-- JaCoCo Coverage -->
         <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
