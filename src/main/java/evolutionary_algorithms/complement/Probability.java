@@ -1,10 +1,18 @@
 package evolutionary_algorithms.complement;
 
-public class Probability {
+public class Probability implements Cloneable {
     private Object key;
     private Object value;
 	private float probability;
 	
+	@Override
+	public Probability clone() {
+		try {
+			return (Probability) super.clone();
+		} catch (CloneNotSupportedException e) {
+			throw new AssertionError(); // Can't happen
+		}
+	}
 	
 	public float getProbability() {
 		return probability;

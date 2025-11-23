@@ -2,12 +2,15 @@ package evolutionary_algorithms.complement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.security.SecureRandom;
 
 import metaheuristics.generators.LimitRoulette;
 
 import problem.definition.State;
 
 public class RouletteSelection extends FatherSelection {
+    
+    private static final SecureRandom secureRandom = new SecureRandom();
 
 	@Override
 	public List<State> selection(List<State> listState, int truncation) {/*
@@ -49,7 +52,7 @@ public class RouletteSelection extends FatherSelection {
 		}
 		List<State> fatherList = new ArrayList<State>();
 		for (int j = 0; j < listState.size(); j++) {
-			float numbAleatory = (float) (Math.random() * (double)(1));
+			float numbAleatory = secureRandom.nextFloat();
 			boolean find = false;
 			int i = 0;
 			while ((find == false) && (i < listLimit.size())){

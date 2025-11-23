@@ -25,21 +25,21 @@ public class MetricasMultiobjetivo {
 		return total;
 	}
 	
-// % Indica  qué  tan  lejos  están  los  elementos  del frente  de  Pareto  actual  respecto  al  frente  de  Pareto  verdadero	
+// % Indica  quï¿½  tan  lejos  estï¿½n  los  elementos  del frente  de  Pareto  actual  respecto  al  frente  de  Pareto  verdadero	
 	public double DistanciaGeneracional(List<State> solutionsFPcurrent, List<State> solutionsFPtrue) throws BiffException, IOException{
 		float min = 1000;
 		float distancia = 0;
 		float distanciaGeneracional = 0;
 		for (int i = 0; i < solutionsFPcurrent.size();i++) {
 			State solutionVO = solutionsFPcurrent.get(i);
-			//Calculando la distancia euclideana entre solutionVO y el miembro más cercano del frente de Pareto verdadero
+			//Calculando la distancia euclideana entre solutionVO y el miembro mï¿½s cercano del frente de Pareto verdadero
 			min = 1000;
 			for (int j = 0; j < solutionsFPtrue.size();j++) { 
 				for (int j2 = 0; j2 < solutionVO.getEvaluation().size(); j2++) {
 					State solutionFPV = solutionsFPtrue.get(j);
 					// porq elevar la distancia al cuadrado
 					distancia += (solutionVO.getEvaluation().get(j2) - solutionFPV.getEvaluation().get(j2))*  
-							(solutionVO.getEvaluation().get(j2) - solutionFPV.getEvaluation().get(j2)); //ceros si el argumento es el cero, 1.0 si el argumento es mayor que el cero, -1.0 si el argumento está menos del cero
+							(solutionVO.getEvaluation().get(j2) - solutionFPV.getEvaluation().get(j2)); //ceros si el argumento es el cero, 1.0 si el argumento es mayor que el cero, -1.0 si el argumento estï¿½ menos del cero
 				}
 				if(distancia < min){
 					min = distancia;
@@ -53,7 +53,7 @@ public class MetricasMultiobjetivo {
 	}
 
 	public double Dispersion(ArrayList<State> solutions) throws BiffException, IOException{
-		//Soluciones obtenidas con la ejecución del algoritmo X
+		//Soluciones obtenidas con la ejecuciï¿½n del algoritmo X
 		LinkedList<Float> distancias = new LinkedList<Float>();
 		float distancia = 0;
 		float min = 1000;

@@ -3,6 +3,7 @@ package metaheuristics.generators;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+import java.security.SecureRandom;
 
 import metaheurictics.strategy.Strategy;
 
@@ -27,7 +28,9 @@ import factory_method.FactoryMutation;
 import factory_method.FactoryReplace;
 
 public class GeneticAlgorithm extends Generator {
-
+    
+    private static final SecureRandom secureRandom = new SecureRandom();
+	
 	private State stateReferenceGA;
 	private List<State> listState = new ArrayList<State>(); 
 	private IFFactoryFatherSelection iffatherselection;
@@ -60,7 +63,7 @@ public class GeneticAlgorithm extends Generator {
 	
     public GeneticAlgorithm() {
 		super();
-		this.listState = getListStateRef(); // llamada al método que devuelve la lista. 
+		this.listState = getListStateRef(); // llamada al mï¿½todo que devuelve la lista. 
 //		this.selectionType = SelectionType.Truncation;
 //		this.crossoverType = CrossoverType.UniformCrossover;
 //		this.mutationType = MutationType.UniformMutation;
@@ -81,8 +84,8 @@ public class GeneticAlgorithm extends Generator {
     	iffatherselection = new FactoryFatherSelection();
     	FatherSelection selection = iffatherselection.createSelectFather(selectionType);
     	List<State> fathers = selection.selection(refList, truncation);
-    	int pos1 = (int)(Math.random() * fathers.size());
-    	int pos2 = (int)(Math.random() * fathers.size());
+    	int pos1 = secureRandom.nextInt(fathers.size());
+    	int pos2 = secureRandom.nextInt(fathers.size());
     	
     	State auxState1 = (State) Strategy.getStrategy().getProblem().getState().getCopy();
     	auxState1.setCode(new ArrayList<Object>(fathers.get(pos1).getCode()));

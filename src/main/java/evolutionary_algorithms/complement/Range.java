@@ -6,10 +6,10 @@ public class Range {
    private float min;
    
    public Probability getData() {
-	  return data;
+	  return data != null ? data.clone() : null;
    }
    public void setData(Probability data) {
-	  this.data = data;
+	  this.data = data != null ? data.clone() : null;
    }
    public float getMax() {
 	  return max;

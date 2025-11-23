@@ -12,7 +12,7 @@ import problem.definition.State;
 public class AIOMutation extends Mutation {
 	
 	
-	public static ArrayList<Object> path = new ArrayList<Object>();
+	private static final ArrayList<Object> path = new ArrayList<Object>();
 
 	@Override
 	public State mutation(State state, double PM) {
