@@ -211,10 +211,17 @@ public class Problem {
      * @brief Crea una nueva instancia de un método de solución.
      * @param type Tipo de método de solución a crear.
      * @return Instancia de SolutionMethod.
+     * @throws IllegalArgumentException Si hay argumentos inválidos.
+     * @throws SecurityException Si hay violación de seguridad.
+     * @throws ClassNotFoundException Si no se encuentra la clase.
+     * @throws InstantiationException Si falla la instanciación.
+     * @throws IllegalAccessException Si no hay acceso.
+     * @throws InvocationTargetException Si el objetivo de la invocación lanza una excepción.
+     * @throws NoSuchMethodException Si no se encuentra el método.
      */
-	public SolutionMethod newSolutionMethod(TypeSolutionMethod type) {
+	public SolutionMethod newSolutionMethod(TypeSolutionMethod type) throws IllegalArgumentException, SecurityException, ClassNotFoundException, InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException {
 		factorySolutionMethod = new FactorySolutionMethod();
-		return factorySolutionMethod.createSolutionMethod(type);
+		return factorySolutionMethod.createdSolutionMethod(type);
 	}
 }
 
