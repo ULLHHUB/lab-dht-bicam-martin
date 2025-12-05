@@ -7,3 +7,5 @@
 [![SonarCloud Analysis](https://github.com/ULLHHUB/lab-dht-bicam-martin/actions/workflows/sonarcloud.yml/badge.svg)](https://github.com/ULLHHUB/lab-dht-bicam-martin/actions/workflows/sonarcloud.yml)
 
 ![Éxito del Pipeline](exito.PNG)
+
+![Fallo del Pipeline](fallo.PNG)
