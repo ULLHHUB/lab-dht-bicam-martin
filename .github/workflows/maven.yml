@@ -54,8 +54,8 @@ jobs:
           mvn --batch-mode -V \
               clean verify sonar:sonar \
               -DskipTests=false \
-              -Dsonar.projectKey=dcastellnieves_my-app \
-              -Dsonar.organization=dcastellnieves \
+              -Dsonar.projectKey=ULLHHUB_lab-dht-bicam-martin \
+              -Dsonar.organization=ullhhub \
               -Dsonar.host.url=https://sonarcloud.io \
               -Dsonar.login=${SONAR_TOKEN} \
               -Dsonar.qualitygate.wait=true
