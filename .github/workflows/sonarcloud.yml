@@ -44,7 +44,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           mvn clean verify sonar:sonar \
-            -Dsonar.projectKey=dcastellnieves_my-app \
-            -Dsonar.organization=dcastellnieves \
+            -Dsonar.projectKey=ULLHHUB_lab-dht-bicam-martin \
+            -Dsonar.organization=ullhhub \
             -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=${SONAR_TOKEN}
