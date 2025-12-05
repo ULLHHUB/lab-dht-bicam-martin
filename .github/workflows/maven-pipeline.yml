@@ -1,0 +1,71 @@
+name: Java CI/CD Pipeline
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  build-analyze-deploy:
+    name: Build, Test, Analyze & Package
+    runs-on: ubuntu-latest
+    
+    steps:
+    # --- CONFIGURACIÓN INICIAL ---
+    - name: Checkout del código
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Necesario para que SonarCloud analice todo el historial
+
+    - name: Configurar JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17' # Cambia esto a tu versión de Java (11, 17, 21)
+        distribution: 'temurin'
+        cache: 'maven'
+
+    - name: Cache SonarCloud packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.sonar/cache
+        key: ${{ runner.os }}-sonar
+        restore-keys: ${{ runner.os }}-sonar
+
+    # --- ETAPA A: BUILD & UNIT TEST ---
+    # Compila y ejecuta tests (mvn verify incluye compile y test)
+    # Si falla un test, el pipeline se detiene aquí automáticamente.
+    - name: (A) Build & Unit Tests
+      run: mvn clean verify -DskipTests=false
+
+    # --- ETAPA B: QUALITY & SECURITY ANALYSIS ---
+    # Ejecuta análisis estático y de vulnerabilidades.
+    # Nota: SpotBugs/PMD/Checkstyle suelen ejecutarse en 'verify' si están en el pom.xml
+    # Aquí forzamos OWASP explícitamente.
+    - name: (B) Security Analysis - OWASP Dependency Check
+      run: mvn org.owasp:dependency-check-maven:check
+      # Esto fallará si encuentra vulnerabilidades altas (configurado en pom.xml failBuildOnCVSS)
+
+    # --- ETAPA C: SONARCLOUD SCAN ---
+    # Se ejecuta solo si los pasos anteriores tuvieron éxito.
+    - name: (C) SonarCloud Scan
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Token por defecto de GitHub
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # El que tú creaste
+      run: |
+        mvn sonar:sonar \
+          -Dsonar.projectKey=ULLHHUB_lab-dht-bicam-martin \
+          -Dsonar.organization=ullhhub \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.qualitygate.wait=true
+      # -Dsonar.qualitygate.wait=true hace que el pipeline falle si no pasa el Quality Gate
+
+    # --- FASE 4: GENERACIÓN DE ARTEFACTO ---
+    # Publica el JAR solo si todo lo anterior fue exitoso
+    - name: (4) Publicar Artefacto (JAR)
+      if: success() 
+      uses: actions/upload-artifact@v4
+      with:
+        name: final-artifact-jar
+        path: target/*.jar
+        retention-days: 5
