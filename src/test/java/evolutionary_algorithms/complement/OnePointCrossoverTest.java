@@ -48,7 +48,7 @@ class OnePointCrossoverTest {
         State child = crossover.crossover(father1, father2, 1.0);
         
         assertNotNull(child);
-        assertEquals(5, 250);
+        assertEquals(5, child.getCode().size());
         
         // Verify child is not null and has valid elements
         boolean has1 = false;
