@@ -20,13 +20,7 @@ import factory_method.FactoryCandidate;
 
 public class CandidateValue {
 
-	@SuppressWarnings("unused")
-	private StrategyType strategy;
-
 	private IFFactoryCandidate ifFactory;
-
-	@SuppressWarnings("unused")
-	private CandidateType typecand;
 
 	private TabuSolutions tabusolution;
 
@@ -34,12 +28,10 @@ public class CandidateValue {
 
 	public CandidateValue(){}
 
-	public CandidateValue(StrategyType strategy, IFFactoryCandidate ifFactory, CandidateType typecand, 
+	public CandidateValue(IFFactoryCandidate ifFactory, 
 			TabuSolutions tabusolution, SearchCandidate searchcandidate) { //, Strategy executegenerator
 		super();
-		this.strategy = strategy;
 		this.ifFactory = ifFactory;
-		this.typecand = typecand;
 		this.tabusolution = tabusolution;
 		this.searchcandidate = searchcandidate;
 	}
