@@ -5,3 +5,5 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=ULLHHUB_lab-dht-bicam-martin&metric=coverage)](https://sonarcloud.io/summary/new_code?id=ULLHHUB_lab-dht-bicam-martin)
 
 [![SonarCloud Analysis](https://github.com/ULLHHUB/lab-dht-bicam-martin/actions/workflows/sonarcloud.yml/badge.svg)](https://github.com/ULLHHUB/lab-dht-bicam-martin/actions/workflows/sonarcloud.yml)
+
+![Éxito del Pipeline](exito.PNG)
